@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=61"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
 
 [project]
 name = "rbpo-evidence"
@@ -22,8 +22,18 @@ rbpo-evidence = "rbpo_evidence.cli:main"
 [project.urls]
 Repository = "https://github.com/alexqzm/rbpo-evidence"
 
-[tool.setuptools]
+[tool.hatch.build.targets.wheel]
 packages = ["rbpo_evidence"]
+
+# Модель, сопоставления и схемы лежат в корне репозитория; в колесо они кладутся внутрь пакета,
+# чтобы `pip install git+https://…` давал рабочую установку без исходного дерева.
+[tool.hatch.build.targets.wheel.force-include]
+"model" = "rbpo_evidence/_data/model"
+"crosswalk" = "rbpo_evidence/_data/crosswalk"
+"schema" = "rbpo_evidence/_data/schema"
+
+[tool.hatch.build.targets.sdist]
+exclude = ["/.github"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

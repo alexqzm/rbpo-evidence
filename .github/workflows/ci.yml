@@ -33,3 +33,23 @@ jobs:
           set -e
           test "$code" -eq 10
           diff -u examples/scii-gate-B1/report.md /tmp/report.md
+
+  wheel:
+    # Колесо должно работать без исходного дерева: модель, сопоставления и схемы внутри пакета.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Build
+        run: |
+          pip install build
+          python -m build --outdir dist .
+      - name: Install wheel and run outside the source tree
+        run: |
+          python -m venv /tmp/venv
+          /tmp/venv/bin/pip install dist/*.whl
+          cd /tmp
+          /tmp/venv/bin/rbpo-evidence validate
+          /tmp/venv/bin/rbpo-evidence stats

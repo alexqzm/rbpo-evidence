@@ -15,3 +15,6 @@
 - Пример: манифест и отчёт для стенда scii-gate, сценарий B1.
 - JSON Schema модели, манифеста и сопоставлений; сверка модели с текстом стандарта
   (`tools/verify_against_standard.py`).
+- Модель, сопоставления и схемы входят в колесо (`rbpo_evidence/_data/`): установка
+  `pip install git+https://github.com/alexqzm/rbpo-evidence` работает без исходного дерева,
+  пакет можно использовать как зависимость (сборка — hatchling).

@@ -134,6 +134,10 @@ rbpo-evidence crosswalk crosswalk/nist-ssdf-1.1.yaml
 ```
 
 Без установки — `python3 -m rbpo_evidence …` из корня репозитория. Зависимость одна — PyYAML.
+Установка без клонирования: `pip install git+https://github.com/alexqzm/rbpo-evidence` — модель,
+сопоставления и схемы входят в пакет. Так его использует
+[`rbpo-pipeline`](https://github.com/alexqzm/rbpo-pipeline), конвейер GitHub Actions, который
+собирает технические артефакты РБПО и строит манифест для проверки полноты.
 
 Манифест проекта (схема — [`schema/manifest.schema.json`](schema/manifest.schema.json)):
 

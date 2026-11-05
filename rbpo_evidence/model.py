@@ -65,11 +65,13 @@ def process_of(clause: str) -> str:
 
 
 def default_model_path() -> Path:
-    """Путь к модели: переменная RBPO_MODEL, ./model/ или каталог model/ рядом с пакетом."""
+    """Путь к модели: переменная RBPO_MODEL, ./model/, каталог model/ рядом с пакетом
+    (исходное дерево) или данные внутри установленного пакета (колесо)."""
     env = os.environ.get("RBPO_MODEL")
     if env:
         return Path(env)
-    for base in (Path.cwd(), Path(__file__).resolve().parent.parent):
+    here = Path(__file__).resolve().parent
+    for base in (Path.cwd(), here.parent, here / "_data"):
         p = base / "model" / MODEL_FILE
         if p.exists():
             return p
