@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/alexqzm/rbpo-evidence/schema/model.schema.json",
+  "title": "rbpo-evidence: модель ГОСТ Р 56939-2024",
+  "type": "object",
+  "required": ["schema", "model_version", "standard", "processes"],
+  "properties": {
+    "schema": {"const": "rbpo-evidence/model/v1"},
+    "model_version": {"type": "string"},
+    "standard": {
+      "type": "object",
+      "required": ["id", "title"],
+      "properties": {
+        "id": {"type": "string"}, "title": {"type": "string"}, "introduced": {"type": "string", "format": "date"},
+        "approved": {"type": "string"}, "replaces": {"type": "string"}, "official_source": {"type": "string"}
+      }
+    },
+    "processes": {"type": "array", "items": {"$ref": "#/definitions/process"}},
+    "annex": {"type": "array", "items": {"$ref": "#/definitions/process"}}
+  },
+  "definitions": {
+    "process": {
+      "type": "object",
+      "required": ["id", "title", "requirements", "artifacts"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^(5|A)\\.[0-9]+$"},
+        "title": {"type": "string", "minLength": 1},
+        "informative": {"type": "boolean"},
+        "requirements": {"type": "array", "items": {"$ref": "#/definitions/requirement"}},
+        "artifacts": {"type": "array", "items": {"$ref": "#/definitions/artifact"}}
+      },
+      "additionalProperties": false
+    },
+    "requirement": {
+      "type": "object",
+      "required": ["id", "label", "obligation"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^(5|A)\\.[0-9]+\\.2\\.[0-9]+$"},
+        "label": {"type": "string", "minLength": 1},
+        "obligation": {"enum": ["mandatory", "recommended", "discretionary"]},
+        "if_applicable": {"type": "boolean"},
+        "considers": {"type": "array", "items": {"type": "string", "pattern": "^(5|A)\\.[0-9]+\\.3\\.[0-9]+$"}}
+      },
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["id", "label", "content"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^(5|A)\\.[0-9]+\\.3\\.[0-9]+$"},
+        "label": {"type": "string", "minLength": 1},
+        "content": {"enum": ["required", "optional"]}
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/alexqzm/rbpo-evidence/schema/manifest.schema.json",
+  "title": "rbpo-evidence: манифест свидетельств проекта",
+  "type": "object",
+  "required": ["schema", "project", "artifacts"],
+  "properties": {
+    "schema": {"const": "rbpo-evidence/manifest/v1"},
+    "project": {"type": "string"},
+    "standard": {"type": "string"},
+    "source": {"type": "object"},
+    "scope": {
+      "type": "object",
+      "properties": {
+        "exclude": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["process", "reason"],
+            "properties": {"process": {"type": "string"}, "reason": {"type": "string", "minLength": 1}}
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "propertyNames": {"pattern": "^5\\.[0-9]+\\.3\\.[0-9]+$"},
+      "additionalProperties": {
+        "type": "object",
+        "required": ["state"],
+        "properties": {
+          "state": {"enum": ["P", "N", "F"]},
+          "ref": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "evidence": {"type": "string"},
+          "note": {"type": "string"}
+        }
+      }
+    }
+  }
+}

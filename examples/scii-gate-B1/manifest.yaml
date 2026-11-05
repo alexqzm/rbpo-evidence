@@ -1,0 +1,26 @@
+# Манифест свидетельств РБПО, полученный из результатов стенда scii-gate.
+# Сгенерирован tools/manifest_from_scii_gate.py; вручную не править.
+
+schema: rbpo-evidence/manifest/v1
+project: "Стенд scii-gate, сценарий B1: Цепочка поставщика с полным набором свидетельств стенда (эталонная запись Э)"
+standard: "ГОСТ Р 56939-2024"
+source:
+  data: "scii-gate results/results.json"
+  scenario: "B1"
+  gate_decision: "допуск"
+  run_finished: "2026-10-30T12:36:53Z"
+  crosswalk: "crosswalk/scii-gate.yaml"
+  rule: "F, если хотя бы одно свидетельство F; иначе P, если хотя бы одно P; иначе N"
+artifacts:
+  "5.4.3.3": {state: P, evidence: "s14=P"}
+  "5.9.3.2": {state: N, evidence: "s12=N"}
+  "5.10.3.4": {state: P, evidence: "s13=P"}
+  "5.12.3.2": {state: P, evidence: "s22=P"}
+  "5.13.3.2": {state: P, evidence: "s32=P"}
+  "5.13.3.4": {state: P, evidence: "s21=P, s22=P"}
+  "5.13.3.5": {state: P, evidence: "s31=P"}
+  "5.13.3.6": {state: P, evidence: "s23=P, s24=P"}
+  "5.14.3.3": {state: P, evidence: "s11=N, s14=P"}
+  "5.16.3.2": {state: P, evidence: "s41=P"}
+  "5.18.3.2": {state: P, evidence: "s43=P"}
+  "5.20.3.4": {state: P, evidence: "s42=P, s51=P"}

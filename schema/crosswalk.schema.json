@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/alexqzm/rbpo-evidence/schema/crosswalk.schema.json",
+  "title": "rbpo-evidence: сопоставление с внешней рамкой или свидетельствами",
+  "type": "object",
+  "required": ["schema", "target", "relation", "mappings"],
+  "properties": {
+    "schema": {"const": "rbpo-evidence/crosswalk/v1"},
+    "target": {"type": "object", "required": ["id"]},
+    "relation": {"enum": ["related"]},
+    "mappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["target"],
+        "properties": {
+          "target": {"type": "string"},
+          "label": {"type": "string"},
+          "processes": {"type": "array", "items": {"type": "string", "pattern": "^5\\.[0-9]+$"}},
+          "artifacts": {"type": "array", "items": {"type": "string", "pattern": "^5\\.[0-9]+\\.3\\.[0-9]+$"}},
+          "note": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "Если вы используете эту модель или код, сошлитесь на них так."
+title: "rbpo-evidence: ГОСТ Р 56939-2024 как граф доказательств"
+type: software
+version: 0.1.0
+license: Apache-2.0
+repository-code: "https://github.com/alexqzm/rbpo-evidence"
+authors:
+  - family-names: Kuzmin
+    given-names: Alexander
+    orcid: "https://orcid.org/0000-0002-0393-412X"
+keywords:
+  - secure software development
+  - SSDLC
+  - GOST R 56939-2024
+  - NIST SSDF
+  - software supply chain
+  - evidence graph
+references:
+  - type: software
+    title: "scii-gate: гейт допуска обновлений ПО киберфизических систем по графу доказательств"
+    doi: 10.5281/zenodo.23833592
+    repository-code: "https://github.com/alexqzm/scii-gate"
+    authors:
+      - family-names: Kuzmin
+        given-names: Alexander
+        orcid: "https://orcid.org/0000-0002-0393-412X"

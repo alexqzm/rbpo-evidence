@@ -1,0 +1,45 @@
+# Сопоставление практик NIST SP 800-218 (SSDF) версии 1.1 с процессами ГОСТ Р 56939-2024.
+#
+# Уровень сопоставления — «связано» (практика и процесс относятся к одной и той же деятельности),
+# а не эквивалентность. Это интерпретация автора модели. Наименования практик даны по SSDF 1.1;
+# версия 1.2 (SP 800-218 Rev. 1) на момент составления — проект.
+# Лицензия данных: CC BY 4.0 (LICENSE-DATA).
+
+schema: rbpo-evidence/crosswalk/v1
+target:
+  id: "NIST SP 800-218 v1.1"
+  title: "Secure Software Development Framework (SSDF) Version 1.1"
+  published: "2022-02-04"
+  url: "https://csrc.nist.gov/pubs/sp/800/218/final"
+relation: related
+mappings:
+  # Prepare the Organization (PO)
+  - {target: "PO.1", label: "Define Security Requirements for Software Development", processes: ["5.3", "5.17"],
+     note: "требования к ПО — 5.3; доведение требований до сторонних поставщиков (PO.1.3) — договорные обязательства в 5.17"}
+  - {target: "PO.2", label: "Implement Roles and Responsibilities", processes: ["5.1", "5.2"]}
+  - {target: "PO.3", label: "Implement Supporting Toolchains", processes: ["5.10", "5.11", "5.12"],
+     note: "перечни и конфигурации инструментов анализа и сборки"}
+  - {target: "PO.4", label: "Define and Use Criteria for Software Security Checks", processes: ["5.10", "5.20"],
+     note: "критерии устранения ошибок в регламенте статического анализа и приёмка перед выпуском"}
+  - {target: "PO.5", label: "Implement and Maintain Secure Environments for Software Development", processes: ["5.13", "5.14", "5.15"]}
+  # Protect the Software (PS)
+  - {target: "PS.1", label: "Protect All Forms of Code from Unauthorized Access and Tampering", processes: ["5.4", "5.14"]}
+  - {target: "PS.2", label: "Provide a Mechanism for Verifying Software Release Integrity", processes: ["5.20", "5.21"]}
+  - {target: "PS.3", label: "Archive and Protect Each Software Release", processes: ["5.16", "5.21"],
+     note: "хранение копий поставляемых версий — 5.21; перечень зависимостей как данные о происхождении (PS.3.2) — 5.16"}
+  # Produce Well-Secured Software (PW)
+  - {target: "PW.1", label: "Design Software to Meet Security Requirements and Mitigate Security Risks", processes: ["5.6", "5.7"]}
+  - {target: "PW.2", label: "Review the Software Design to Verify Compliance with Security Requirements and Risk Information", processes: ["5.6", "5.19"],
+     note: "уточнение архитектуры и сверка архитектуры и модели угроз с результатами тестирования (5.19.2.5)"}
+  - {target: "PW.4", label: "Reuse Existing, Well-Secured Software When Feasible Instead of Duplicating Functionality", processes: ["5.16", "5.17"]}
+  - {target: "PW.5", label: "Create Source Code by Adhering to Secure Coding Practices", processes: ["5.8"]}
+  - {target: "PW.6", label: "Configure the Compilation, Interpreter, and Build Processes to Improve Executable Security", processes: ["5.12"]}
+  - {target: "PW.7", label: "Review and/or Analyze Human-Readable Code to Identify Vulnerabilities and Verify Compliance with Security Requirements", processes: ["5.9", "5.10"]}
+  - {target: "PW.8", label: "Test Executable Code to Identify Vulnerabilities and Verify Compliance with Security Requirements", processes: ["5.11", "5.18", "5.19"]}
+  - {target: "PW.9", label: "Configure Software to Have Secure Settings by Default", processes: [],
+     note: "прямого процесса нет; ближе всего 5.21.2.4 — эксплуатационная документация с настройками безопасности, но не безопасные настройки по умолчанию"}
+  # Respond to Vulnerabilities (RV)
+  - {target: "RV.1", label: "Identify and Confirm Vulnerabilities on an Ongoing Basis", processes: ["5.22", "5.23", "5.24"]}
+  - {target: "RV.2", label: "Assess, Prioritize, and Remediate Vulnerabilities", processes: ["5.5", "5.23"]}
+  - {target: "RV.3", label: "Analyze Vulnerabilities to Identify Their Root Causes", processes: [],
+     note: "анализа первопричин уязвимостей как отдельного процесса в ГОСТ Р 56939-2024 нет"}

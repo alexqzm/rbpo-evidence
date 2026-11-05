@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: pip install -e ".[test]"
+      - name: Tests
+        run: pytest -q
+      - name: Model and crosswalks
+        run: rbpo-evidence validate
+      - name: Example report is up to date
+        run: |
+          set +e
+          rbpo-evidence check examples/scii-gate-B1/manifest.yaml > /tmp/report.md
+          code=$?
+          set -e
+          test "$code" -eq 10
+          diff -u examples/scii-gate-B1/report.md /tmp/report.md

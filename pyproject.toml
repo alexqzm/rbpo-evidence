@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rbpo-evidence"
+version = "0.1.0"
+description = "ГОСТ Р 56939-2024 как граф доказательств: модель процессов, требований и артефактов РБПО, проверка полноты свидетельств"
+readme = "README.md"
+license = {text = "Apache-2.0 (code), CC-BY-4.0 (data)"}
+requires-python = ">=3.9"
+authors = [{name = "Alexander Kuzmin"}]
+dependencies = ["pyyaml>=5.4"]
+keywords = ["secure software development", "SSDLC", "РБПО", "ГОСТ Р 56939", "NIST SSDF", "software supply chain"]
+
+[project.optional-dependencies]
+test = ["pytest>=7", "jsonschema>=3.2"]
+
+[project.scripts]
+rbpo-evidence = "rbpo_evidence.cli:main"
+
+[project.urls]
+Repository = "https://github.com/alexqzm/rbpo-evidence"
+
+[tool.setuptools]
+packages = ["rbpo_evidence"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
