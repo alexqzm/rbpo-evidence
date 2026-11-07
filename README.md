@@ -120,6 +120,7 @@ flowchart LR
 | [`rbpo_evidence/`](rbpo_evidence) | загрузка и проверка модели, проверка полноты, граф, сопоставления, CLI |
 | [`examples/`](examples) | манифест и отчёт для стенда scii-gate (сценарий B1) |
 | [`tools/`](tools) | получение манифеста из результатов scii-gate |
+| [`paper/`](paper) | пакеты расчётов статей: [`integrity-architecture`](paper/integrity-architecture) — архитектура обеспечения целостности и ГОСТ Р 56939-2024 |
 | [`docs/model.md`](docs/model.md) | как построена модель и что в ней интерпретация |
 
 ## Быстрый старт
